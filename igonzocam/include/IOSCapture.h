@@ -53,8 +53,8 @@ class IOSCapture {
 	//! Begin capturing video
 	void		start();
     void		start(int orientation);
-    void		startRecording(int fps = 30, int length = -1, std::function<void()> func = NULL);
-    void		startRecording(int orientation, int fps = 30, int length = -1, std::function<void()> func = NULL);
+    void		startRecording(int fps = 30, int length = -1, std::function<void(bool b)> func = NULL);
+    void		startRecording(int orientation, int fps = 30, int length = -1, std::function<void(bool b)> func = NULL);
 	//! Stop capturing video
 	void		stop();
 	//! Is the device capturing video

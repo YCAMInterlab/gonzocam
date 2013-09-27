@@ -73,7 +73,7 @@ class IOSCaptureImplAvFoundationDevice : public IOSCapture::Device {
     int                             recFrames;
     int                             recMaxLength;
     int                             recFps;
-    std::function<void()>           autoStopCallback;
+    std::function<void(bool b)>     autoStopCallback;
 }
 
 @property (nonatomic) int8_t mOrientation;
@@ -83,7 +83,7 @@ class IOSCaptureImplAvFoundationDevice : public IOSCapture::Device {
 - (id)initWithDevice:(const cinder::IOSCapture::DeviceRef)device width:(int)width height:(int)height;
 - (bool)prepareStartCapture;
 - (void)startCapture;
-- (void)startCaptureWithRecording:(int)fps limit:(int)limit autoStopCallback:(std::function<void()>)func;
+- (void)startCaptureWithRecording:(int)fps limit:(int)limit autoStopCallback:(std::function<void(bool b)>)func;
 - (void)stopCapture;
 - (bool)isCapturing;
 

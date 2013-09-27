@@ -262,7 +262,7 @@ static BOOL sDevicesEnumerated = false;
 	}
 }
 
-- (void)startCaptureWithRecording:(int)fps limit:(int)limit autoStopCallback:(std::function<void()>)func
+- (void)startCaptureWithRecording:(int)fps limit:(int)limit autoStopCallback:(std::function<void(bool b)>)func
 //- (void)startCaptureWithRecording:(int)fps limit:(int)limit
 {
 	if( mIsCapturing )
@@ -466,7 +466,7 @@ static BOOL sDevicesEnumerated = false;
     NSLog(@"Finished with error: %@", error);
     
     if (autoStopCallback) {
-        autoStopCallback();
+        autoStopCallback(true);
     }
 }
 
@@ -477,18 +477,7 @@ static BOOL sDevicesEnumerated = false;
 		return mCurrentFrame;
 	}
 	
-	@synchronized (self) {
-        /*
-        if(mWithRecording){
-            NSLog(@"recording new frame");
-            [self writeImageinVideo:recFrames fps:recFps];
-            recFrames ++;            
-            if(recMaxLength > 0 && recFrames > (recMaxLength * recFps)){
-                [self stopCapture];
-            }
-        }
-        */
-        
+	@synchronized (self) {        
 		CVPixelBufferLockBaseAddress( mWorkingPixelBuffer, 0 );
 		
 		uint8_t *data = (uint8_t *)CVPixelBufferGetBaseAddress( mWorkingPixelBuffer );

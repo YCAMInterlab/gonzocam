@@ -33,7 +33,7 @@ public:
 	void update();
 	void draw();
     
-    void onAutoStop();
+    void onAutoStop(bool b);
     
     IOSCaptureRef mCapture;
     gl::TextureRef mTexture;
@@ -53,7 +53,6 @@ public:
     
 private:
     void drowModeSegmentUpdate(int i);
-    //void sizeSegmentUpdate(int i);
     void orientationSegmentUpdate(int i);
     void mSensorSegmentUpdate(int i);
     void mActiveSegmentUpdate(int i);
@@ -71,7 +70,7 @@ private:
     float           shakeDelta, audioThreshold;
     //
     const int    llist[3] = {3, 5, 10};
-    const Vec2i  qlist[2] = {Vec2i(1240, 720), Vec2f(640, 480)};
+    const Vec2i  qlist[2] = {Vec2i(1280, 720), Vec2f(640, 480)};
     
 	NativeViewController *mNativeController;
     SettingViewController *mSettingViewController;
@@ -97,15 +96,9 @@ void GonzoCamApp::setup()
 {
     NSLog(@"cinder loop initialize..");
     
-	// Example of how to add Cinder's UIViewController to your native root UIViewViewController
 	[mNativeController addCinderViewToFront];
     
-	// Example of how to add Cinder's UIView to your view heirarchy (comment above out first)
-    //[mNativeController addCinderViewAsBarButton];
-    
-    
     //! UI callbacks from SettingViewController
-    //[mNativeController.mSettingViewController setSizeSegmentCallback: bind( &GonzoCamApp::sizeSegmentUpdate, this, std::__1::placeholders::_1 ) ];
     [mNativeController.mSettingViewController setModeSegmentCallback: bind( &GonzoCamApp::drowModeSegmentUpdate, this, std::__1::placeholders::_1 ) ];
     [mNativeController.mSettingViewController setOrientationSegmentCallback: bind( &GonzoCamApp::orientationSegmentUpdate, this, std::__1::placeholders::_1 ) ];
     [mNativeController.mSettingViewController setLedSwitchCallback: bind( &GonzoCamApp::ledSwitchUpdate, this, std::__1::placeholders::_1 ) ];
@@ -133,7 +126,7 @@ void GonzoCamApp::setup()
         mCapture = IOSCapture::create( qlist[pQuality].x, qlist[pQuality].y ); //..?
 	}
 	catch( ... ) {
-		console() << "Failed to initialize capture" << endl;
+		NSLog(@"Failed to initialize capture");
 	}
     //
     
@@ -150,11 +143,12 @@ void GonzoCamApp::setup()
     shakeDelta = 0.1f;
     audioThreshold = 0.5f;
     
-    //setFrameRate(30.0f);
-    setFrameRate(24.0f);
+    setFrameRate(30.0f);
+    //setFrameRate(24.0f);
     
     //MotionManager::setAccelerometerFilter(0.7f);
-    MotionManager::enable(24.0f, MotionManager::Accelerometer);
+    //MotionManager::enable(24.0f, MotionManager::Accelerometer);
+    MotionManager::enable(30.0f, MotionManager::Accelerometer);
     
     currentTestProcess = bind( &GonzoCamApp::motionUpdate, this );
     currentDrawProcess = bind( &GonzoCamApp::captureDraw, this );
@@ -180,8 +174,7 @@ void GonzoCamApp::motionUpdate()
             shakeCount = 0;
             
             if(autorec){
-                //mCapture->startRecording(orientation, 30, 10, bind( &GonzoCamApp::onAutoStop, this ));
-                mCapture->startRecording(orientation, 30, llist[pLength], bind( &GonzoCamApp::onAutoStop, this ));
+                mCapture->startRecording(orientation, 30, llist[pLength], bind( &GonzoCamApp::onAutoStop, this, true ));
                 mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.8 green:0.2 blue:0.2 alpha:1.0];
             }else{
                 mCapture->start(orientation);
@@ -206,7 +199,7 @@ void GonzoCamApp::activeMotionUpdate()
             if(ledMode) mCapture->getDevice()->ledOn();
             
             if(autorec){
-                mCapture->startRecording(orientation, 30, 10, bind( &GonzoCamApp::onAutoStop, this ));
+                mCapture->startRecording(orientation, 30, llist[pLength], bind( &GonzoCamApp::onAutoStop, this, true ));
                 mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.8 green:0.2 blue:0.2 alpha:1.0];
             }else{
                 mCapture->start(orientation);
@@ -237,18 +230,18 @@ void GonzoCamApp::audioInUpdate()
                 
                 for( uint32_t i = startIdx, c = 0; i < endIdx; i++, c++ ) {
                     if(leftBuffer->mData[i] > audioThreshold){
-                        //if(leftBuffer->mData[i] > 0.2){
-                        console() << "find peak " << leftBuffer->mData[i] << endl;
+                        //console() << "find peak " << leftBuffer->mData[i] << endl;
+                        
                         if(ledMode) mCapture->getDevice()->ledOn();
                         
                         if(autorec){
-                            mCapture->startRecording(orientation, 30, 10, bind( &GonzoCamApp::onAutoStop, this ));
-                            //mCapture->startRecording(orientation, 24, 10, bind( &GonzoCamApp::onAutoStop, this ));
+                            mCapture->startRecording(orientation, 30, llist[pLength], bind( &GonzoCamApp::onAutoStop, this, true ));
                             mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.8 green:0.2 blue:0.2 alpha:1.0];
                         }else{
                             mCapture->start(orientation);
                             mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.2 green:0.8 blue:0.2 alpha:1.0];
                         }
+                        
                         break;
                     }
                 }
@@ -262,6 +255,13 @@ void GonzoCamApp::audioInUpdate()
     }
 }
 
+/*
+void GonzoCamApp::silenceAudioInUpdate()
+{
+
+}
+*/
+
 void GonzoCamApp::update()
 {
     if(!loopMode) return;
@@ -272,7 +272,6 @@ void GonzoCamApp::update()
 
 void GonzoCamApp::captureDraw()
 {
-    // this pair of lines is the standard way to clear the screen in OpenGL
     gl::clear();
     gl::disableAlphaBlending();
     gl::color(Color(1, 1, 1));
@@ -285,10 +284,9 @@ void GonzoCamApp::captureDraw()
     
     if( mTexture ) {
         glPushMatrix();
+        
         //change iphone to landscape orientation
-        
         if (orientation == 2 || orientation == 3 ) gl::rotate( 90.0f );
-        
         gl::translate( 0.0f, -getWindowWidth());
         
         //Rectf flippedBounds( 0.0f, 0.0f, [self getWindowHeight], [self getWindowWidth] );
@@ -340,17 +338,11 @@ void GonzoCamApp::draw()
 }
 
 
-void GonzoCamApp::onAutoStop() {
-    /*
-     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Save Done!!"
-     message:@"callback was triggered by a std::function."
-     delegate:nil
-     cancelButtonTitle:@"Ok"
-     otherButtonTitles:nil];
-     [alert show];
-     */
+void GonzoCamApp::onAutoStop(bool b)
+{
     mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0];
     shakeCount = 0;
+    NSLog(@"autostop done");
 }
 
 
@@ -383,39 +375,11 @@ void GonzoCamApp::drowModeSegmentUpdate(int i)
     }
 }
 
-/*
-void GonzoCamApp::sizeSegmentUpdate(int i)
-{
-    const bool _loopMode = loopMode;
-    
-    loopMode = false;
-    mCapture->stop();
-    
-    if(!autorec) mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0];
-    
-    mCapture = NULL;
-    
-    try {
-        if (i == 0) {
-            mCapture = IOSCapture::create( 1280, 720 );
-        }else{
-            mCapture = IOSCapture::create( 640, 480 );
-        }
-    }
-    catch( ... ) {
-        console() << "Failed to initialize capture" << endl;
-    }
-    
-    loopMode = _loopMode;
-}
-*/
-
 void GonzoCamApp::orientationSegmentUpdate(int i)
 {
     mCapture->stop();
     mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0];
     orientation = i;
-    console() << "will change orientation in next time to call <start()>" << endl;
 }
 
 void GonzoCamApp::recSwitchUpdate(bool b)
@@ -451,14 +415,6 @@ void GonzoCamApp::mSensorSegmentUpdate(int i)
             currentTestProcess = bind( &GonzoCamApp::audioInUpdate, this );
         }
     }
-    
-    /*
-     if (i == 0) {
-     currentTestProcess = bind( &GonzoCamApp::motionUpdate, this );
-     }else{
-     currentTestProcess = bind( &GonzoCamApp::audioInUpdate, this );
-     }
-     */
 }
 
 void GonzoCamApp::mActiveSegmentUpdate(int i)

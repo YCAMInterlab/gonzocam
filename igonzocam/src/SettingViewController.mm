@@ -16,7 +16,6 @@
 @implementation SettingViewController
 
 @synthesize modeSegmentCallback = _modeSegmentCallback;
-//@synthesize sizeSegmentCallback = _sizeSegmentCallback;
 @synthesize orientationSegmentCallback = _orientationSegmentCallback;
 @synthesize ledSwitchCallback = _ledSwitchCallback;
 @synthesize recSwitchCallback = _recSwitchCallback;
@@ -87,14 +86,6 @@
     if( _modeSegmentCallback ) _modeSegmentCallback([sgm selectedSegmentIndex]);
 }
 
-/*
-- (IBAction) listenSizeSegment:(id)sender
-{
-    UISegmentedControl *sgm = (UISegmentedControl *)sender;
-    
-    if( _sizeSegmentCallback ) _sizeSegmentCallback([sgm selectedSegmentIndex]);
-}
-*/
 
 - (IBAction) listenOrientationSegment:(id)sender
 {

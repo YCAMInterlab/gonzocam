@@ -19,7 +19,6 @@
 }
 
 @property (nonatomic) std::function<void(int i)> modeSegmentCallback;
-//@property (nonatomic) std::function<void(int i)> sizeSegmentCallback;
 @property (nonatomic) std::function<void(int i)> orientationSegmentCallback;
 @property (nonatomic) std::function<void(bool b)> ledSwitchCallback;
 @property (nonatomic) std::function<void(bool b)> recSwitchCallback;
@@ -39,7 +38,6 @@
 
 
 - (IBAction)listenModeSegment:(id)sender;
-- (IBAction)listenSizeSegment:(id)sender;
 - (IBAction)listenOrientationSegment:(id)sender;
 
 - (IBAction)listenLEDSwitch:(id)sender;

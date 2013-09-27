@@ -24,7 +24,6 @@
 
 #include "IOSCapture.h"
 
-// #import "IOSCaptureImplAvFoundation.h"
 #import "IOSCaptureImplAvFoundation.h"
 typedef IOSCaptureImplAvFoundation	CapturePlatformImpl;
 
@@ -109,7 +108,7 @@ void IOSCapture::start(int orientation)
 #endif
 }
     
-void IOSCapture::startRecording(int fps, int length, std::function<void()> func)
+void IOSCapture::startRecording(int fps, int length, std::function<void(bool b)> func)
 {
 #if defined( CINDER_COCOA )
     [((::CapturePlatformImpl*)mObj->mImpl) startCaptureWithRecording:fps limit:length autoStopCallback:func];
@@ -118,7 +117,7 @@ void IOSCapture::startRecording(int fps, int length, std::function<void()> func)
 #endif
 }
     
-void IOSCapture::startRecording(int orientation, int fps, int length, std::function<void()> func)
+void IOSCapture::startRecording(int orientation, int fps, int length, std::function<void(bool b)> func)
 {
 #if defined( CINDER_COCOA )
     ((::CapturePlatformImpl*)mObj->mImpl).mOrientation = orientation;
