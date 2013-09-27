@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment version="1552" defaultVersion="1280" identifier="iOS"/>
+        <development version="5000" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingViewController">
+            <connections>
+                <outlet property="abstractSegment" destination="708" id="1185"/>
+                <outlet property="abstractSlider" destination="214" id="1175"/>
+                <outlet property="scView" destination="203" id="1230"/>
+                <outlet property="sensorSegment" destination="1094" id="1196"/>
+                <outlet property="view" destination="1" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="203">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Drawing Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="734">
+                            <rect key="frame" x="20" y="19" width="112" height="26"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="26" id="hE8-wf-yGM"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="509">
+                            <rect key="frame" x="20" y="53" width="280" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Off"/>
+                                <segment title="Camera"/>
+                                <segment title="Sensor"/>
+                            </segments>
+                            <connections>
+                                <action selector="listenModeSegment:" destination="-1" eventType="valueChanged" id="543"/>
+                            </connections>
+                        </segmentedControl>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="LED Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="210">
+                            <rect key="frame" x="20" y="132" width="81" height="27"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="211">
+                            <rect key="frame" x="223" y="132" width="79" height="27"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="listenLEDSwitch:" destination="-1" eventType="valueChanged" id="217"/>
+                            </connections>
+                        </switch>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Auto Recording" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="590">
+                            <rect key="frame" x="20" y="192" width="120" height="27"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="591">
+                            <rect key="frame" x="223" y="192" width="79" height="27"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="autoRecSwitch:" destination="-1" eventType="valueChanged" id="613"/>
+                            </connections>
+                        </switch>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Device Orientation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1044">
+                            <rect key="frame" x="20" y="258" width="287" height="27"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="27" id="mki-9M-K5g"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Active Sensor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1114">
+                            <rect key="frame" x="20" y="367" width="287" height="27"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="27" id="OWs-WJ-FuG"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Trigger Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1127">
+                            <rect key="frame" x="20" y="473" width="287" height="27"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="27" id="upY-EF-Y8j"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="708">
+                            <rect key="frame" x="20" y="508" width="280" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Active OFF"/>
+                                <segment title="Active ON"/>
+                            </segments>
+                            <connections>
+                                <action selector="listenMActiveSegment:" destination="-1" eventType="valueChanged" id="716"/>
+                            </connections>
+                        </segmentedControl>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.10000000149011612" minValue="0.0010000000474974513" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="214">
+                            <rect key="frame" x="18" y="621" width="282" height="23"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="278" id="9kr-jI-KOx"/>
+                            </constraints>
+                            <connections>
+                                <action selector="listenMThreshSlider:" destination="-1" eventType="valueChanged" id="219"/>
+                            </connections>
+                        </slider>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sensitivity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1018">
+                            <rect key="frame" x="20" y="592" width="78" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1059">
+                            <rect key="frame" x="20" y="293" width="280" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="" image="iphone_p38.png"/>
+                                <segment title="" image="iphone_pb38.png"/>
+                                <segment title="" image="iphone_pl38.png"/>
+                                <segment title="" image="iphone_pr38.png"/>
+                            </segments>
+                            <connections>
+                                <action selector="listenOrientationSegment:" destination="-1" eventType="valueChanged" id="1077"/>
+                            </connections>
+                        </segmentedControl>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1094">
+                            <rect key="frame" x="20" y="402" width="280" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Motion"/>
+                                <segment title="Mic"/>
+                            </segments>
+                            <connections>
+                                <action selector="listenMSensorSegment:" destination="-1" eventType="valueChanged" id="1153"/>
+                            </connections>
+                        </segmentedControl>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="210" firstAttribute="top" secondItem="203" secondAttribute="top" constant="132" id="2a7-pY-T4a"/>
+                        <constraint firstItem="708" firstAttribute="trailing" secondItem="1094" secondAttribute="trailing" id="3be-bq-ZZm"/>
+                        <constraint firstAttribute="trailing" secondItem="509" secondAttribute="trailing" constant="20" symbolic="YES" id="787-AB-VVa"/>
+                        <constraint firstItem="1059" firstAttribute="centerX" secondItem="203" secondAttribute="centerX" id="7aI-E2-wET"/>
+                        <constraint firstItem="590" firstAttribute="top" secondItem="591" secondAttribute="top" id="A3L-IZ-Pbw"/>
+                        <constraint firstItem="211" firstAttribute="bottom" secondItem="210" secondAttribute="bottom" id="A3l-tR-en7"/>
+                        <constraint firstItem="1059" firstAttribute="top" secondItem="1044" secondAttribute="bottom" constant="8" symbolic="YES" id="A90-b0-egI"/>
+                        <constraint firstItem="1114" firstAttribute="top" secondItem="203" secondAttribute="top" constant="367" id="CQv-yd-gli"/>
+                        <constraint firstItem="509" firstAttribute="leading" secondItem="210" secondAttribute="leading" id="Hbn-pz-vOQ"/>
+                        <constraint firstItem="1059" firstAttribute="leading" secondItem="1114" secondAttribute="leading" id="K05-bj-EE4"/>
+                        <constraint firstItem="1114" firstAttribute="trailing" secondItem="1127" secondAttribute="trailing" id="Ng8-RK-4EX"/>
+                        <constraint firstItem="590" firstAttribute="bottom" secondItem="591" secondAttribute="bottom" id="SW1-QJ-E0R"/>
+                        <constraint firstItem="1127" firstAttribute="top" secondItem="203" secondAttribute="top" constant="473" id="UN6-6X-VIl"/>
+                        <constraint firstAttribute="trailing" secondItem="1044" secondAttribute="trailing" constant="13" id="UYv-qj-f7B"/>
+                        <constraint firstItem="1127" firstAttribute="leading" secondItem="708" secondAttribute="leading" id="VeH-qr-LLc"/>
+                        <constraint firstItem="214" firstAttribute="top" secondItem="1018" secondAttribute="bottom" constant="8" symbolic="YES" id="Zs7-f5-MaO"/>
+                        <constraint firstItem="509" firstAttribute="leading" secondItem="734" secondAttribute="leading" id="bGO-pT-jid"/>
+                        <constraint firstItem="1044" firstAttribute="top" secondItem="203" secondAttribute="top" constant="258" id="c70-lZ-MMh"/>
+                        <constraint firstItem="214" firstAttribute="leading" secondItem="1018" secondAttribute="leading" id="cea-Pd-q9W"/>
+                        <constraint firstItem="1044" firstAttribute="trailing" secondItem="1114" secondAttribute="trailing" id="cgO-DO-5JI"/>
+                        <constraint firstItem="1018" firstAttribute="top" secondItem="203" secondAttribute="top" constant="592" id="dUU-XY-7vv"/>
+                        <constraint firstItem="211" firstAttribute="top" secondItem="210" secondAttribute="top" id="e88-jk-MWh"/>
+                        <constraint firstItem="1127" firstAttribute="leading" secondItem="1094" secondAttribute="leading" id="eA9-cZ-8db"/>
+                        <constraint firstItem="1094" firstAttribute="top" secondItem="1114" secondAttribute="bottom" constant="8" symbolic="YES" id="iE6-br-ATP"/>
+                        <constraint firstItem="734" firstAttribute="leading" secondItem="203" secondAttribute="leading" constant="20" symbolic="YES" id="j77-sR-Arg"/>
+                        <constraint firstItem="1059" firstAttribute="trailing" secondItem="591" secondAttribute="trailing" id="jNX-qa-KOV"/>
+                        <constraint firstItem="509" firstAttribute="top" secondItem="734" secondAttribute="bottom" constant="8" symbolic="YES" id="jT0-Cs-EfK"/>
+                        <constraint firstItem="1059" firstAttribute="trailing" secondItem="1094" secondAttribute="trailing" id="lvB-iZ-cDw"/>
+                        <constraint firstItem="708" firstAttribute="top" secondItem="1127" secondAttribute="bottom" constant="8" symbolic="YES" id="nQR-Vp-SkH"/>
+                        <constraint firstItem="734" firstAttribute="top" secondItem="203" secondAttribute="top" constant="19" id="oOF-gQ-Cqg"/>
+                        <constraint firstItem="591" firstAttribute="trailing" secondItem="211" secondAttribute="trailing" id="qFW-AN-YHB"/>
+                        <constraint firstItem="1114" firstAttribute="leading" secondItem="1094" secondAttribute="leading" id="rcj-eA-rKf"/>
+                        <constraint firstItem="210" firstAttribute="leading" secondItem="590" secondAttribute="leading" id="tWL-bO-d4R"/>
+                        <constraint firstAttribute="bottom" secondItem="214" secondAttribute="bottom" constant="34" id="vwc-1O-uJx"/>
+                        <constraint firstItem="1059" firstAttribute="leading" secondItem="1044" secondAttribute="leading" id="xda-az-N5U"/>
+                        <constraint firstItem="211" firstAttribute="trailing" secondItem="509" secondAttribute="trailing" id="y9T-la-o11"/>
+                        <constraint firstItem="1044" firstAttribute="leading" secondItem="590" secondAttribute="leading" id="yLq-WH-CyX"/>
+                        <constraint firstItem="590" firstAttribute="top" secondItem="203" secondAttribute="top" constant="192" id="yXO-1n-zwq"/>
+                        <constraint firstItem="708" firstAttribute="leading" secondItem="1018" secondAttribute="leading" id="yww-qm-NWC"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="203" secondAttribute="trailing" id="28e-Bm-rNe"/>
+                <constraint firstItem="203" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="5Pw-7t-Hl0"/>
+                <constraint firstAttribute="bottom" secondItem="203" secondAttribute="bottom" id="RB5-Km-jyD"/>
+                <constraint firstItem="203" firstAttribute="top" secondItem="1" secondAttribute="top" id="hN2-qh-HQ2"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="iphone_p38.png" width="38" height="38"/>
+        <image name="iphone_pb38.png" width="38" height="38"/>
+        <image name="iphone_pl38.png" width="38" height="38"/>
+        <image name="iphone_pr38.png" width="38" height="38"/>
+    </resources>
+</document>

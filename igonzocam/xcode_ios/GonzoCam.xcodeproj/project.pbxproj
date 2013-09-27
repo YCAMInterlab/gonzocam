@@ -1,0 +1,459 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00748058165D41390024B57A /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 00748057165D41390024B57A /* assets */; };
+		0087D25512CD809F002CD69F /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0087D25412CD809F002CD69F /* CoreText.framework */; };
+		00CFDF6B1138442D0091E310 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CFDF6A1138442D0091E310 /* CoreGraphics.framework */; };
+		00E3E5BDB1904DE48A834B73 /* MotionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F62880683C63438AAF785197 /* MotionManager.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD14FF0DC6FC520079059D /* OpenGLES.framework */; };
+		28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FD15070DC6FC5B0079059D /* QuartzCore.framework */; };
+		6CC2941367524932A79980C0 /* GonzoCamApp.mm in Sources */ = {isa = PBXBuildFile; fileRef = AFFC5B2C27B04DB59854C895 /* GonzoCamApp.mm */; };
+		7C33AC84AD30461D9839188A /* MotionImplCoreMotion.mm in Sources */ = {isa = PBXBuildFile; fileRef = E2F2A041920243C4B04DFE5C /* MotionImplCoreMotion.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		7CEF2B2ED8D544B89D68F871 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E56A86B4EC7F4BF2983BB341 /* Default-568h@2x.png */; };
+		A43C72D3B8D443EB8E6238B5 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA896B805DBC4EC79D7EC13F /* CoreMotion.framework */; };
+		C725DFFE121DAC7F00FA186B /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727C02B121B400300192073 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		C725E001121DAC8F00FA186B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C725E000121DAC8F00FA186B /* AVFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		C725E001121DAC8FFFFA18FF /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CFDF6A1138442D0091FFFF /* ImageIO.framework */; };
+		C727C02E121B400300192073 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C727C02D121B400300192073 /* CoreVideo.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		DDDDE001121DAC8FFFFADDDD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDDDF6A1138442D0091DDDD /* MobileCoreServices.framework */; };
+		EB1A877217E42F4F00F8C4A6 /* IOSCapture.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB1A876E17E42F4F00F8C4A6 /* IOSCapture.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EB1A877317E42F4F00F8C4A6 /* IOSCaptureImplAvFoundation.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB1A876F17E42F4F00F8C4A6 /* IOSCaptureImplAvFoundation.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EB1A877417E42F4F00F8C4A6 /* NativeViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB1A877017E42F4F00F8C4A6 /* NativeViewController.mm */; };
+		EB1A877517E42F4F00F8C4A6 /* SettingViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB1A877117E42F4F00F8C4A6 /* SettingViewController.mm */; };
+		EB1A878017E42F9E00F8C4A6 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB1A877A17E42F9E00F8C4A6 /* SettingViewController.xib */; };
+		EB1A878117E42F9E00F8C4A6 /* gonzocam.png in Resources */ = {isa = PBXBuildFile; fileRef = EB1A877B17E42F9E00F8C4A6 /* gonzocam.png */; };
+		EB1A878217E42F9E00F8C4A6 /* iphone_p38.png in Resources */ = {isa = PBXBuildFile; fileRef = EB1A877C17E42F9E00F8C4A6 /* iphone_p38.png */; };
+		EB1A878317E42F9E00F8C4A6 /* iphone_pb38.png in Resources */ = {isa = PBXBuildFile; fileRef = EB1A877D17E42F9E00F8C4A6 /* iphone_pb38.png */; };
+		EB1A878417E42F9E00F8C4A6 /* iphone_pl38.png in Resources */ = {isa = PBXBuildFile; fileRef = EB1A877E17E42F9E00F8C4A6 /* iphone_pl38.png */; };
+		EB1A878517E42F9E00F8C4A6 /* iphone_pr38.png in Resources */ = {isa = PBXBuildFile; fileRef = EB1A877F17E42F9E00F8C4A6 /* iphone_pr38.png */; };
+		EB1A878917E431A600F8C4A6 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB1A878817E431A600F8C4A6 /* Accelerate.framework */; };
+		EB1A878B17E4346000F8C4A6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB1A878A17E4346000F8C4A6 /* Images.xcassets */; };
+		EB1A878D17E47D4000F8C4A6 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EB1A878C17E47D4000F8C4A6 /* Settings.bundle */; };
+		EB778BCF17F4249700D57FB1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB778BCE17F4249700D57FB1 /* AudioToolbox.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		00692BCF14FF149000D0A05E /* GonzoCam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GonzoCam.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		00748057165D41390024B57A /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = assets; path = ../assets; sourceTree = "<group>"; };
+		0087D25412CD809F002CD69F /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		00CFDF6A1138442D0091E310 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		00CFDF6A1138442D0091FFFF /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		0C5107922B014DDBA73FEDDE /* MotionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MotionManager.h; path = ../../../../lib/libcinder/pkg/cinder_0.8.5_mac/blocks/MotionManager/src/cinder/MotionManager.h; sourceTree = "<group>"; };
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1F226DC76097404792BE1764 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
+		28FD14FF0DC6FC520079059D /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		28FD15070DC6FC5B0079059D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AFFC5B2C27B04DB59854C895 /* GonzoCamApp.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = GonzoCamApp.mm; path = ../src/GonzoCamApp.mm; sourceTree = "<group>"; };
+		C725E000121DAC8F00FA186B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C727C02B121B400300192073 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		C727C02D121B400300192073 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		C8B0B1B26D10427981F8EAF3 /* GonzoCam_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GonzoCam_Prefix.pch; sourceTree = "<group>"; };
+		CA53AF684E19417AA33C1C00 /* MotionImplCoreMotion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MotionImplCoreMotion.h; path = ../../../../lib/libcinder/pkg/cinder_0.8.5_mac/blocks/MotionManager/src/cinder/MotionImplCoreMotion.h; sourceTree = "<group>"; };
+		DDDDDF6A1138442D0091DDDD /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		E2F2A041920243C4B04DFE5C /* MotionImplCoreMotion.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = MotionImplCoreMotion.mm; path = ../../../../lib/libcinder/pkg/cinder_0.8.5_mac/blocks/MotionManager/src/cinder/MotionImplCoreMotion.mm; sourceTree = "<group>"; };
+		E56A86B4EC7F4BF2983BB341 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		EB1A876E17E42F4F00F8C4A6 /* IOSCapture.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IOSCapture.mm; path = ../src/IOSCapture.mm; sourceTree = "<group>"; };
+		EB1A876F17E42F4F00F8C4A6 /* IOSCaptureImplAvFoundation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = IOSCaptureImplAvFoundation.mm; path = ../src/IOSCaptureImplAvFoundation.mm; sourceTree = "<group>"; };
+		EB1A877017E42F4F00F8C4A6 /* NativeViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NativeViewController.mm; path = ../src/NativeViewController.mm; sourceTree = "<group>"; };
+		EB1A877117E42F4F00F8C4A6 /* SettingViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SettingViewController.mm; path = ../src/SettingViewController.mm; sourceTree = "<group>"; };
+		EB1A877617E42F7A00F8C4A6 /* IOSCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IOSCapture.h; path = ../include/IOSCapture.h; sourceTree = "<group>"; };
+		EB1A877717E42F7A00F8C4A6 /* IOSCaptureImplAvFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IOSCaptureImplAvFoundation.h; path = ../include/IOSCaptureImplAvFoundation.h; sourceTree = "<group>"; };
+		EB1A877817E42F7A00F8C4A6 /* NativeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NativeViewController.h; path = ../include/NativeViewController.h; sourceTree = "<group>"; };
+		EB1A877917E42F7B00F8C4A6 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SettingViewController.h; path = ../include/SettingViewController.h; sourceTree = "<group>"; };
+		EB1A877A17E42F9E00F8C4A6 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
+		EB1A877B17E42F9E00F8C4A6 /* gonzocam.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gonzocam.png; sourceTree = "<group>"; };
+		EB1A877C17E42F9E00F8C4A6 /* iphone_p38.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone_p38.png; sourceTree = "<group>"; };
+		EB1A877D17E42F9E00F8C4A6 /* iphone_pb38.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone_pb38.png; sourceTree = "<group>"; };
+		EB1A877E17E42F9E00F8C4A6 /* iphone_pl38.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone_pl38.png; sourceTree = "<group>"; };
+		EB1A877F17E42F9E00F8C4A6 /* iphone_pr38.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone_pr38.png; sourceTree = "<group>"; };
+		EB1A878817E431A600F8C4A6 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		EB1A878A17E4346000F8C4A6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = GonzoCam2/Images.xcassets; sourceTree = "<group>"; };
+		EB1A878C17E47D4000F8C4A6 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		EB778BCD17F4249700D57FB1 /* GonzoCam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GonzoCam.entitlements; sourceTree = "<group>"; };
+		EB778BCE17F4249700D57FB1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		F5D5B419DD2B429A9FDC5F4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F62880683C63438AAF785197 /* MotionManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = MotionManager.cpp; path = ../../../../lib/libcinder/pkg/cinder_0.8.5_mac/blocks/MotionManager/src/cinder/MotionManager.cpp; sourceTree = "<group>"; };
+		FA896B805DBC4EC79D7EC13F /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00692BCC14FF149000D0A05E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB1A878917E431A600F8C4A6 /* Accelerate.framework in Frameworks */,
+				C725E001121DAC8F00FA186B /* AVFoundation.framework in Frameworks */,
+				C725DFFE121DAC7F00FA186B /* CoreMedia.framework in Frameworks */,
+				C725E001121DAC8FFFFA18FF /* ImageIO.framework in Frameworks */,
+				DDDDE001121DAC8FFFFADDDD /* MobileCoreServices.framework in Frameworks */,
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				28FD15000DC6FC520079059D /* OpenGLES.framework in Frameworks */,
+				28FD15080DC6FC5B0079059D /* QuartzCore.framework in Frameworks */,
+				00CFDF6B1138442D0091E310 /* CoreGraphics.framework in Frameworks */,
+				C727C02E121B400300192073 /* CoreVideo.framework in Frameworks */,
+				EB778BCF17F4249700D57FB1 /* AudioToolbox.framework in Frameworks */,
+				0087D25512CD809F002CD69F /* CoreText.framework in Frameworks */,
+				A43C72D3B8D443EB8E6238B5 /* CoreMotion.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00692BC414FF149000D0A05E = {
+			isa = PBXGroup;
+			children = (
+				EB778BCD17F4249700D57FB1 /* GonzoCam.entitlements */,
+				99692BD914FF149000DFFFFF /* Blocks */,
+				99692BD914FF149000D0A05F /* Headers */,
+				00692BD914FF149000D0A05E /* Source */,
+				00692BD914FF149000D0FFFF /* Resources */,
+				00692BD214FF149000D0A05E /* Frameworks */,
+				00692BD014FF149000D0A05E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		00692BD014FF149000D0A05E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00692BCF14FF149000D0A05E /* GonzoCam.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		00692BD214FF149000D0A05E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EB778BCE17F4249700D57FB1 /* AudioToolbox.framework */,
+				EB1A878817E431A600F8C4A6 /* Accelerate.framework */,
+				C727C02B121B400300192073 /* CoreMedia.framework */,
+				C727C02D121B400300192073 /* CoreVideo.framework */,
+				28FD15070DC6FC5B0079059D /* QuartzCore.framework */,
+				28FD14FF0DC6FC520079059D /* OpenGLES.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				00CFDF6A1138442D0091E310 /* CoreGraphics.framework */,
+				00CFDF6A1138442D0091FFFF /* ImageIO.framework */,
+				DDDDDF6A1138442D0091DDDD /* MobileCoreServices.framework */,
+				C725E000121DAC8F00FA186B /* AVFoundation.framework */,
+				0087D25412CD809F002CD69F /* CoreText.framework */,
+				FA896B805DBC4EC79D7EC13F /* CoreMotion.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		00692BD914FF149000D0A05E /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				AFFC5B2C27B04DB59854C895 /* GonzoCamApp.mm */,
+				EB1A876E17E42F4F00F8C4A6 /* IOSCapture.mm */,
+				EB1A876F17E42F4F00F8C4A6 /* IOSCaptureImplAvFoundation.mm */,
+				EB1A877017E42F4F00F8C4A6 /* NativeViewController.mm */,
+				EB1A877117E42F4F00F8C4A6 /* SettingViewController.mm */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		00692BD914FF149000D0FFFF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EB1A878C17E47D4000F8C4A6 /* Settings.bundle */,
+				EB1A878A17E4346000F8C4A6 /* Images.xcassets */,
+				EB1A877A17E42F9E00F8C4A6 /* SettingViewController.xib */,
+				EB1A877B17E42F9E00F8C4A6 /* gonzocam.png */,
+				EB1A877C17E42F9E00F8C4A6 /* iphone_p38.png */,
+				EB1A877D17E42F9E00F8C4A6 /* iphone_pb38.png */,
+				EB1A877E17E42F9E00F8C4A6 /* iphone_pl38.png */,
+				EB1A877F17E42F9E00F8C4A6 /* iphone_pr38.png */,
+				00748057165D41390024B57A /* assets */,
+				E56A86B4EC7F4BF2983BB341 /* Default-568h@2x.png */,
+				F5D5B419DD2B429A9FDC5F4D /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		35C89FB54516426D8E799C44 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				C051EBA39A05400288733897 /* cinder */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		99692BD914FF149000D0A05F /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				1F226DC76097404792BE1764 /* Resources.h */,
+				C8B0B1B26D10427981F8EAF3 /* GonzoCam_Prefix.pch */,
+				EB1A877617E42F7A00F8C4A6 /* IOSCapture.h */,
+				EB1A877717E42F7A00F8C4A6 /* IOSCaptureImplAvFoundation.h */,
+				EB1A877817E42F7A00F8C4A6 /* NativeViewController.h */,
+				EB1A877917E42F7B00F8C4A6 /* SettingViewController.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		99692BD914FF149000DFFFFF /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				E7B6757881404247B9739577 /* MotionManager */,
+			);
+			name = Blocks;
+			sourceTree = "<group>";
+		};
+		C051EBA39A05400288733897 /* cinder */ = {
+			isa = PBXGroup;
+			children = (
+				F62880683C63438AAF785197 /* MotionManager.cpp */,
+				E2F2A041920243C4B04DFE5C /* MotionImplCoreMotion.mm */,
+				CA53AF684E19417AA33C1C00 /* MotionImplCoreMotion.h */,
+				0C5107922B014DDBA73FEDDE /* MotionManager.h */,
+			);
+			name = cinder;
+			sourceTree = "<group>";
+		};
+		E7B6757881404247B9739577 /* MotionManager */ = {
+			isa = PBXGroup;
+			children = (
+				35C89FB54516426D8E799C44 /* src */,
+			);
+			name = MotionManager;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00692BCE14FF149000D0A05E /* GonzoCam */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00692BF514FF149000D0A05E /* Build configuration list for PBXNativeTarget "GonzoCam" */;
+			buildPhases = (
+				00692BCB14FF149000D0A05E /* Sources */,
+				00692BCC14FF149000D0A05E /* Frameworks */,
+				00692BCD14FF149000D0A05E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GonzoCam;
+			productName = GonzoCam2;
+			productReference = 00692BCF14FF149000D0A05E /* GonzoCam.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00692BC614FF149000D0A05E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				TargetAttributes = {
+					00692BCE14FF149000D0A05E = {
+						DevelopmentTeam = M47356Q24L;
+						SystemCapabilities = {
+							com.apple.InterAppAudio = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 00692BC914FF149000D0A05E /* Build configuration list for PBXProject "GonzoCam" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 00692BC414FF149000D0A05E;
+			productRefGroup = 00692BD014FF149000D0A05E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				00692BCE14FF149000D0A05E /* GonzoCam */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00692BCD14FF149000D0A05E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00748058165D41390024B57A /* assets in Resources */,
+				EB1A878B17E4346000F8C4A6 /* Images.xcassets in Resources */,
+				EB1A878D17E47D4000F8C4A6 /* Settings.bundle in Resources */,
+				7CEF2B2ED8D544B89D68F871 /* Default-568h@2x.png in Resources */,
+				EB1A878417E42F9E00F8C4A6 /* iphone_pl38.png in Resources */,
+				EB1A878517E42F9E00F8C4A6 /* iphone_pr38.png in Resources */,
+				EB1A878017E42F9E00F8C4A6 /* SettingViewController.xib in Resources */,
+				EB1A878317E42F9E00F8C4A6 /* iphone_pb38.png in Resources */,
+				EB1A878217E42F9E00F8C4A6 /* iphone_p38.png in Resources */,
+				EB1A878117E42F9E00F8C4A6 /* gonzocam.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00692BCB14FF149000D0A05E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CC2941367524932A79980C0 /* GonzoCamApp.mm in Sources */,
+				EB1A877417E42F4F00F8C4A6 /* NativeViewController.mm in Sources */,
+				EB1A877317E42F4F00F8C4A6 /* IOSCaptureImplAvFoundation.mm in Sources */,
+				EB1A877217E42F4F00F8C4A6 /* IOSCapture.mm in Sources */,
+				EB1A877517E42F4F00F8C4A6 /* SettingViewController.mm in Sources */,
+				00E3E5BDB1904DE48A834B73 /* MotionManager.cpp in Sources */,
+				7C33AC84AD30461D9839188A /* MotionImplCoreMotion.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		00692BF314FF149000D0A05E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CINDER_PATH = ../../../../lib/libcinder/pkg/cinder_0.8.5_mac;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/boost\"";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../blocks/ciXtract/src/LibXtract ../../../../lib/libcinder/pkg/cinder_0.8.5_mac/blocks/MotionManager/src";
+			};
+			name = Debug;
+		};
+		00692BF414FF149000D0A05E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CINDER_PATH = ../../../../lib/libcinder/pkg/cinder_0.8.5_mac;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/boost\"";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../blocks/ciXtract/src/LibXtract ../../../../lib/libcinder/pkg/cinder_0.8.5_mac/blocks/MotionManager/src";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		00692BF614FF149000D0A05E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = GonzoCam.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = GonzoCam_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = (
+					"\"$(CINDER_PATH)/lib/libcinder-iphone_d.a\"",
+					"-lz",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = (
+					"\"$(CINDER_PATH)/lib/libcinder-iphone-sim_d.a\"",
+					"-lz",
+				);
+				PRODUCT_NAME = GonzoCam;
+				PROVISIONING_PROFILE = "";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		00692BF714FF149000D0A05E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = GonzoCam.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = GonzoCam_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = (
+					"\"$(CINDER_PATH)/lib/libcinder-iphone.a\"",
+					"-lz",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = (
+					"\"$(CINDER_PATH)/lib/libcinder-iphone-sim.a\"",
+					"-lz",
+				);
+				PRODUCT_NAME = GonzoCam;
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00692BC914FF149000D0A05E /* Build configuration list for PBXProject "GonzoCam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00692BF314FF149000D0A05E /* Debug */,
+				00692BF414FF149000D0A05E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		00692BF514FF149000D0A05E /* Build configuration list for PBXNativeTarget "GonzoCam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00692BF614FF149000D0A05E /* Debug */,
+				00692BF714FF149000D0A05E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 00692BC614FF149000D0A05E /* Project object */;
+}
