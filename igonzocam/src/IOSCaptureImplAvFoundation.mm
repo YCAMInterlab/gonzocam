@@ -263,7 +263,6 @@ static BOOL sDevicesEnumerated = false;
 }
 
 - (void)startCaptureWithRecording:(int)fps limit:(int)limit autoStopCallback:(std::function<void(bool b)>)func
-//- (void)startCaptureWithRecording:(int)fps limit:(int)limit
 {
 	if( mIsCapturing )
 		return;

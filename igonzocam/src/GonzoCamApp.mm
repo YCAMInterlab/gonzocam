@@ -44,10 +44,8 @@ public:
     std::function<void(bool b)> currentTestProcess;
     std::function<void(bool b)> currentDrawProcess;
     
-    void motionUpdate();
-    void activeMotionUpdate();
-    void audioInUpdate();
-    //void silenceAudioInUpdate();
+    void motionSensorUpdate(bool invert);
+    void audioInUpdate(bool invert);
     void captureDraw();
     void sensorDraw();
     
@@ -65,7 +63,7 @@ private:
 	Font			mFont;
     
     bool            ledMode, loopMode, autorec;
-    int             orientation, drawMode, shakeCount, isInverted, calibCount;
+    int             orientation, drawMode, shakeCount, silenceCount, isInverted;
     int             pLength, pQuality;
     float           shakeDelta, audioThreshold;
     //
@@ -131,6 +129,7 @@ void GonzoCamApp::setup()
     //
     
     mAudioInput = audio::Input();
+    mAudioInput.start();
     
     ledMode = false;
     loopMode = true;
@@ -139,85 +138,69 @@ void GonzoCamApp::setup()
     orientation = 0;
     drawMode = 1;
     
-    shakeCount = calibCount = 0;
+    shakeCount = silenceCount = 0;
     shakeDelta = 0.1f;
     audioThreshold = 0.5f;
-    
-    setFrameRate(30.0f);
-    //setFrameRate(24.0f);
+    isInverted = 0;
     
     //MotionManager::setAccelerometerFilter(0.7f);
-    //MotionManager::enable(24.0f, MotionManager::Accelerometer);
     MotionManager::enable(30.0f, MotionManager::Accelerometer);
     
-    currentTestProcess = bind( &GonzoCamApp::motionUpdate, this );
+    currentTestProcess = bind( &GonzoCamApp::motionSensorUpdate, this, std::__1::placeholders::_1 );
     currentDrawProcess = bind( &GonzoCamApp::captureDraw, this );
     
     setLoopMode(true);
-    
-    //[mNativeController gotoSetupPanel];
 }
 
 
-void GonzoCamApp::motionUpdate()
+void GonzoCamApp::motionSensorUpdate(bool invert)
 {
-    if(!MotionManager::isShaking(shakeDelta)){
-        if(!mCapture->isCapturing()){
-            shakeCount ++;
-        }else{
-            shakeCount = 0;
+    bool ping_m;
+    
+    if(MotionManager::isShaking(shakeDelta) == invert){
+        if(invert){ //!- move
+            //if(!mCapture->isCapturing()) ping = true;
+            ping_m = true;
+        }else{ //!- stop
+            if(!mCapture->isCapturing()){
+                shakeCount ++;
+            }else{
+                shakeCount = 0;
+            }
+            
+            if(!mCapture->isCapturing() && shakeCount > 60){
+                ping_m = true;
+                shakeCount = 0;
+            }
         }
         
-        if(!mCapture->isCapturing() && shakeCount > 60){
-            if(ledMode) mCapture->getDevice()->ledOn();
-            
-            shakeCount = 0;
-            
-            if(autorec){
-                mCapture->startRecording(orientation, 30, llist[pLength], bind( &GonzoCamApp::onAutoStop, this, true ));
-                mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.8 green:0.2 blue:0.2 alpha:1.0];
-            }else{
-                mCapture->start(orientation);
-                mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.2 green:0.8 blue:0.2 alpha:1.0];
-            }
+        if(!ping_m) return;
+        
+        if(ledMode) mCapture->getDevice()->ledOn();
+        
+        if(autorec){
+            mCapture->startRecording(orientation, 30, llist[pLength], bind( &GonzoCamApp::onAutoStop, this, true ));
+            mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.8 green:0.2 blue:0.2 alpha:1.0];
+        }else{
+            mCapture->start(orientation);
+            mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.2 green:0.8 blue:0.2 alpha:1.0];
         }
     }else{
         shakeCount = 0;
         
-        if(mCapture->isCapturing()){
+        if(!invert && mCapture->isCapturing()){
             mCapture->stop();
             mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0];
         }
     }
 }
 
-
-void GonzoCamApp::activeMotionUpdate()
+void GonzoCamApp::audioInUpdate(bool invert)
 {
-    if(MotionManager::isShaking(shakeDelta)){
-        if(!mCapture->isCapturing()){
-            if(ledMode) mCapture->getDevice()->ledOn();
-            
-            if(autorec){
-                mCapture->startRecording(orientation, 30, llist[pLength], bind( &GonzoCamApp::onAutoStop, this, true ));
-                mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.8 green:0.2 blue:0.2 alpha:1.0];
-            }else{
-                mCapture->start(orientation);
-                mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.2 green:0.8 blue:0.2 alpha:1.0];
-            }
-        }
-    }else{
-        shakeCount = 0;
-    }
-}
-
-
-void GonzoCamApp::audioInUpdate()
-{
+    bool ping_a;
+    
     if(!mCapture->isCapturing()){
-        if (!mAudioInput.isCapturing()) {
-            mAudioInput.start();
-        }else{
+        if (mAudioInput.isCapturing()) {
             mPcmBuffer = mAudioInput.getPcmBuffer();
             if( mPcmBuffer ) {
                 uint32_t bufferSamples = mPcmBuffer->getSampleCount();
@@ -228,45 +211,50 @@ void GonzoCamApp::audioInUpdate()
                 int32_t startIdx = ( endIdx - 1024 );
                 startIdx = math<int32_t>::clamp( startIdx, 0, endIdx );
                 
-                for( uint32_t i = startIdx, c = 0; i < endIdx; i++, c++ ) {
-                    if(leftBuffer->mData[i] > audioThreshold){
-                        //console() << "find peak " << leftBuffer->mData[i] << endl;
-                        
-                        if(ledMode) mCapture->getDevice()->ledOn();
-                        
-                        if(autorec){
-                            mCapture->startRecording(orientation, 30, llist[pLength], bind( &GonzoCamApp::onAutoStop, this, true ));
-                            mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.8 green:0.2 blue:0.2 alpha:1.0];
-                        }else{
-                            mCapture->start(orientation);
-                            mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.2 green:0.8 blue:0.2 alpha:1.0];
+                if(invert){ //!- find peak
+                    for( uint32_t i = startIdx, c = 0; i < endIdx; i++, c++ ) {
+                        if(leftBuffer->mData[i] > audioThreshold){
+                            ping_a = true;
+                            break;
                         }
-                        
-                        break;
+                    }
+                }else{ //!- find silence
+                    for( uint32_t i = startIdx, c = 0; i < endIdx; i++, c++ ) {
+                        if(leftBuffer->mData[i] > audioThreshold){
+                            silenceCount = 0;
+                            return;
+                        }
+                    }
+                    
+                    silenceCount ++;
+                    
+                    if(silenceCount > 120){
+                        silenceCount = 0;
+                        ping_a = true;
                     }
                 }
             }
         }
-    }else{
-        if (mAudioInput.isCapturing()) {
-            mAudioInput.stop();
-            mPcmBuffer = NULL;
+        
+        if(!ping_a) return;
+        
+        if(ledMode) mCapture->getDevice()->ledOn();
+        
+        if(autorec){
+            mCapture->startRecording(orientation, 30, llist[pLength], bind( &GonzoCamApp::onAutoStop, this, true ));
+            mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.8 green:0.2 blue:0.2 alpha:1.0];
+        }else{
+            mCapture->start(orientation);
+            mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.2 green:0.8 blue:0.2 alpha:1.0];
         }
     }
 }
-
-/*
-void GonzoCamApp::silenceAudioInUpdate()
-{
-
-}
-*/
 
 void GonzoCamApp::update()
 {
     if(!loopMode) return;
 
-    if (currentTestProcess) currentTestProcess(true);
+    if (currentTestProcess) currentTestProcess(isInverted);
 }
 
 
@@ -275,9 +263,6 @@ void GonzoCamApp::captureDraw()
     gl::clear();
     gl::disableAlphaBlending();
     gl::color(Color(1, 1, 1));
-    
-    //glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-
     gl::setMatricesWindow( getWindowWidth(), getWindowHeight() );
     
     if( mCapture && mCapture->checkNewFrame()) mTexture = gl::Texture::create( mCapture->getSurface() );
@@ -342,7 +327,7 @@ void GonzoCamApp::onAutoStop(bool b)
 {
     mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0];
     shakeCount = 0;
-    NSLog(@"autostop done");
+    NSLog(@"auto stop done");
 }
 
 
@@ -353,15 +338,14 @@ void GonzoCamApp::setLoopMode(bool b)
 {
     loopMode = b;
     
-    /*
+    ///*
     if(loopMode){
-        //setFrameRate(30.0f);
-        setFrameRate(24.0f);
-        console() << "fps: " << getFrameRate() << endl;
+        setFrameRate(30.0f);
     }else{
-        setFrameRate(0.0f);
+        setFrameRate(1.0f); //!- umm.. setting 0.0f is fail to restart
     }
-    */
+    NSLog(@"reset fps %f:", getFrameRate());
+    //*/
 }
 
 void GonzoCamApp::drowModeSegmentUpdate(int i)
@@ -400,40 +384,29 @@ void GonzoCamApp::ledSwitchUpdate(bool b)
 void GonzoCamApp::mSensorSegmentUpdate(int i)
 {
     mCapture->stop();
-    mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0];
+    mPcmBuffer = NULL;
+    shakeCount = 0;
+    silenceCount = 0;
     
-    if(isInverted == 0){
-        if (i == 0) {
-            currentTestProcess = bind( &GonzoCamApp::motionUpdate, this );
-        }else{
-            currentTestProcess = bind( &GonzoCamApp::audioInUpdate, this );
-        }
+    mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0];
+
+    if(i == 0){
+        currentTestProcess = bind( &GonzoCamApp::motionSensorUpdate, this, std::__1::placeholders::_1 );
     }else{
-        if (i == 0) {
-            currentTestProcess = bind( &GonzoCamApp::activeMotionUpdate, this );
-        }else{
-            currentTestProcess = bind( &GonzoCamApp::audioInUpdate, this );
-        }
+        currentTestProcess = bind( &GonzoCamApp::audioInUpdate, this, std::__1::placeholders::_1 );
     }
 }
 
 void GonzoCamApp::mActiveSegmentUpdate(int i)
 {
-    isInverted = i;
+    mCapture->stop();
+    mPcmBuffer = NULL;
+    shakeCount = 0;
+    silenceCount = 0;
+
+    mNativeController.navigationBar.tintColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1.0];
     
-    if(isInverted == 0){
-        if (i == 0) {
-            currentTestProcess = bind( &GonzoCamApp::motionUpdate, this );
-        }else{
-            currentTestProcess = bind( &GonzoCamApp::audioInUpdate, this );
-        }
-    }else{
-        if (i == 0) {
-            currentTestProcess = bind( &GonzoCamApp::activeMotionUpdate, this );
-        }else{
-            currentTestProcess = bind( &GonzoCamApp::audioInUpdate, this );
-        }
-    }
+    isInverted = i;
 }
 
 void GonzoCamApp::mThreshSliderUpdate(float f)

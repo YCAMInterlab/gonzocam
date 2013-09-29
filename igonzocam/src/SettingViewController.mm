@@ -48,7 +48,7 @@
     // Do any additional setup after loading the view from its nib.
     
     motionCurrentActive = 0;
-    micCurrentActive = 0;
+    micCurrentActive = 1;
     
     motionCurrentThreshold = 0.1f;
     micCurrentThreshold = 0.5f;
@@ -121,6 +121,8 @@
     }
     
     if( _mSensorSegmentCallback ) _mSensorSegmentCallback([sgm selectedSegmentIndex]);
+    if( _mActiveSegmentCallback ) _mActiveSegmentCallback([_abstractSegment selectedSegmentIndex]);
+    if( _mThreshSliderCallback ) _mThreshSliderCallback([_abstractSlider value]);
 }
 
 - (IBAction) listenMActiveSegment:(id)sender

@@ -8,7 +8,6 @@
 @interface NativeViewController : UINavigationController
 
 - (void)addCinderViewToFront;
-- (void)addCinderViewAsBarButton;
 - (void)gotoSetupPanel;
 
 @property (nonatomic) std::function<void()> infoButtonCallback;

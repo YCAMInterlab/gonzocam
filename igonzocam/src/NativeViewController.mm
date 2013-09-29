@@ -7,9 +7,6 @@
 
 @property (nonatomic) UIButton *infoButton;
 
-//- (NSArray *)tabBarItems;
-//- (void)barButtonTapped:(UIBarButtonItem *)sender;
-- (void)addEmptyViewControllerToFront;
 - (void)infoButtonWasTapped:(id)sender;
 
 @end
@@ -37,17 +34,6 @@
 
 	cinderViewParent.title = @"Main View";
 	cinderViewParent.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.infoButton];    
-}
-
-// Get this app's CinderView and add it as a child in our view heirarchy, in this case the left nav bar button.
-// Manually resizing is necessary.
-- (void)addCinderViewAsBarButton
-{
-	[self addEmptyViewControllerToFront];
-	UIViewController *front = [self.viewControllers objectAtIndex:0];
-	UIView *cinderView = (__bridge UIView *)ci::app::getWindow()->getNative();
-	cinderView.frame = CGRectMake( 0, 0, 60, self.navigationBar.frame.size.height );
-	front.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:cinderView];
 }
 
 - (void)gotoSetupPanel
@@ -113,19 +99,6 @@
 
 // -------------------------------------------------------------------------------------------------
 #pragma mark - Private UI
-
-- (void)addEmptyViewControllerToFront
-{
-    /*
-	UIViewController *emptyViewController = [UIViewController new];
-	emptyViewController.title = @"Empty VC";
-	emptyViewController.view.backgroundColor = [UIColor clearColor];
-
-	self.viewControllers = @[emptyViewController];
-	emptyViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.infoButton];
-	emptyViewController.toolbarItems = [self tabBarItems];
-    */
-}
 
 - (void)infoButtonWasTapped:(id)sender
 {
